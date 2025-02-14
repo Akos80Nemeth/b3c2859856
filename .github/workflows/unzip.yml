@@ -18,10 +18,14 @@ jobs:
       - name: Unzip files
         run: unzip -o "*.zip" -d extracted/
 
+            - name: Pull latest changes
+        run: |
+          git pull origin main --rebase
+
       - name: Commit unzipped files
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add extracted/
           git commit -m "Unzipped files"
-          git push
+          git push origin main
